@@ -34,7 +34,8 @@ var firebaseConfig = {
           this.setState({ activeSpot: spot });
           console.log(this.state.activeSpot);
   }
-render(){
+
+  render(){
   return (
     <div className="App">
       <header className="App-header">
@@ -48,8 +49,8 @@ render(){
           <h2 className="point-title">My Spots</h2>
           <ul className="point-description">
           <h1> {this.state.activeSpot.name}</h1>
-          <SpotList firebase = {firebase} action = {this.setActiveSpot.key} />
-          <ScoreList firebase = {firebase}/>
+         <SpotList firebase = {firebase} action = {this.setActiveSpot} />
+          <ScoreList firebase = {firebase} value = {this.state.activeSpot.key}/>
           </ul>
         </div>
         <div className="col-md-6">

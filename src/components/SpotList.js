@@ -42,14 +42,7 @@ this.state = {
         return (
             <div className='spots'>
                 <div className='spot-list'>
-                <form onSubmit= {(e) => this.handleSubmit(e)}
-                onChange= {(e) => this.handleChange(e)}>
-                  <label>
-
-                    <input type="text" name={this.state.newSpotName} />
-                 </label>
-                 <input type="submit" value="New Spot" className="btn btn-secondary"/>
-               </form>
+          
 
                     {
                         this.state.spots.map((spot, index) => {

@@ -48,10 +48,10 @@ render() {
           <div className='scores'>
               <div className='score-list'>
                   {this.state.scores.filter((item) => item.spotId === this.props.value)
-                    .map((score, index) => {
+                  .map((score, index) => {
                         console.log(score);
 
-                        return ( <div className="score-text light bg-light" key={index}><p>{score.content}</p></div>)
+                        return ( <div className="score-text light bg-light" key={this.props.value}><p>{score.content}</p></div>)
                       })
                   }
               </div>
