@@ -45,15 +45,15 @@ var firebaseConfig = {
         <section className="container">
       <section className="row" id="selling-ponts">
 
-        <div className="col-md-6">
+        <div className="col-md-4">
           <h2 className="point-title">My Spots</h2>
           <ul className="point-description">
           <h1> {this.state.activeSpot.name}</h1>
-         <SpotList firebase = {firebase} action = {this.setActiveSpot} />
-          <ScoreList firebase = {firebase} value = {this.state.activeSpot.key}/>
+         <SpotList firebase = {firebase} action = {this.setActiveSpot}  />
+          
           </ul>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <h2 className="point-title">Select Date</h2>
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css'
+import ScoreList from './ScoreList';
 class SpotList extends Component {
   constructor(props){
     super(props);
@@ -42,7 +43,7 @@ this.state = {
         return (
             <div className='spots'>
                 <div className='spot-list'>
-          
+
 
                     {
                         this.state.spots.map((spot, index) => {

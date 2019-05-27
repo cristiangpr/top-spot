@@ -33,9 +33,13 @@ handleSubmit(e){
     spotId: this.props.value,
     timeStamp: this.props.firebase.database.ServerValue.TIMESTAMP,
   }
+  if(newScore.spotId) {
   console.log(newScore);
   this.scoresRef.push(newScore);
   e.target.reset();
+} else {
+  alert("you must select a spot");
+}
 }
   handleChange(e) {
   this.setState({ newScore: e.target.value })
