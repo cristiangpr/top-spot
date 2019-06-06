@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import * as firebase from "firebase";
-import ScoreList from './components/ScoreList';
+
 import SpotList from './components/SpotList';
 
 var firebaseConfig = {
@@ -16,24 +16,33 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  const API = 'http://magicseaweed.com/api/1b935398cd052b4a0924781efa0cec35/forecast/?spot_id=4083'
+
+
+
   class App extends Component {
     constructor(props){
       super(props);
 
-  this.setActiveSpot = this.setActiveSpot.bind(this);
+
 
 
       this.state = {
-        activeSpot: " ",
+          hits: [],
+
+        };
+
 
       }
-    }
 
+        componentDidMount() {
+          fetch(API)
+           .then(response => response.json())
+           .then(data => this.setState({ hits: data }));
+           console.log(this.state);
+       }
 
-    setActiveSpot(spot) {
-          this.setState({ activeSpot: spot });
-          console.log(this.state.activeSpot);
-  }
 
   render(){
   return (
@@ -42,27 +51,10 @@ var firebaseConfig = {
    <h2>Top Spot</h2>
       </header>
       <main>
-        <section className="container">
-      <section className="row" id="selling-ponts">
 
-        <div className="col-md-4">
-          <h2 className="point-title">My Spots</h2>
-          <ul className="point-description">
-          <h1> {this.state.activeSpot.name}</h1>
-         <SpotList firebase = {firebase} action = {this.setActiveSpot}  />
-          
-          </ul>
-        </div>
-        <div className="col-md-4">
-          <h2 className="point-title">Select Date</h2>
+         <SpotList hits={this.state.hits} />
 
 
-          <input type="date" id="start" name="trip-start"
-
-           min="2019-01-01" max= "2019-05-26"/>
-        </div>
-      </section>
-    </section>
       </main>
     </div>
   );
