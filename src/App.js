@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from "firebase";
 
-import SpotList from './components/SpotList';
-
+import ShelterCove from './components/ShelterCove';
+import PuertoEscondido from './components/PuertoEscondido';
 var firebaseConfig = {
     apiKey: "AIzaSyBx3pFZsZcFV_8_iyUnlNr_sjLp7MBxKmY",
     authDomain: "top-spot-11f99.firebaseapp.com",
@@ -17,7 +17,8 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  const API = 'http://magicseaweed.com/api/1b935398cd052b4a0924781efa0cec35/forecast/?spot_id=4083'
+  const cove_API = 'http://magicseaweed.com/api/1b935398cd052b4a0924781efa0cec35/forecast/?spot_id=4083';
+  const puerto_API = 'http://magicseaweed.com/api/1b935398cd052b4a0924781efa0cec35/forecast/?spot_id=340';
 
 
 
@@ -29,7 +30,8 @@ var firebaseConfig = {
 
 
       this.state = {
-          hits: [],
+          cove: [],
+          puerto: []
 
         };
 
@@ -37,10 +39,14 @@ var firebaseConfig = {
       }
 
         componentDidMount() {
-          fetch(API)
+          fetch(cove_API)
            .then(response => response.json())
-           .then(data => this.setState({ hits: data }));
-           console.log(this.state);
+           .then(data => this.setState({ cove: data }));
+
+           fetch(puerto_API)
+            .then(response => response.json())
+            .then(data => this.setState({ puerto: data }));
+        console.log(this.state);
        }
 
 
@@ -51,10 +57,16 @@ var firebaseConfig = {
    <h2>Top Spot</h2>
       </header>
       <main>
-
-         <SpotList hits={this.state.hits} />
-
-
+         <div className ="container">
+          <div className ="row">
+           <div className ="col-sm-6">
+            <ShelterCove cove={this.state.cove} />
+           </div>
+           <div className ="col-sm-6">
+            <PuertoEscondido puerto={this.state.puerto} />
+           </div>
+           </div>
+        </div>
       </main>
     </div>
   );
